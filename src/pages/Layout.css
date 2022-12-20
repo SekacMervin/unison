@@ -1,0 +1,48 @@
+
+.header
+{
+    position: fixed;
+    background-color: gainsboro;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    /* margin: 5px; */
+    /* border-style: solid;
+    border-radius: 20px;
+    border-width: 1px; */
+}
+
+
+.mainbody
+{
+    position: fixed;
+    display: flex;
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+}
+
+.slidebar
+{
+    background-color: gainsboro;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    height: 90%;
+    width: 20%;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.contentBody
+{
+    background-color: white;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    width: 80%;
+    height: 90%;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
