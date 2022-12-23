@@ -1,83 +1,75 @@
 
+//// Header
 .header
 {
     background-color: lightblue;
     display: flex;
-    width: 99%;
+    width: 100%;
     height: auto;
-    border-style: solid;
-    border-radius: 20px;
-    border-width: 0px;
+    min-height: 120px;
     margin-top: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    left: 0;
-    top: 0;
 
-    .leftSite
+    .header-leftSite
     {
         display: flex;
-        flex-direction:row;
-        margin: 20px;
-        padding: 5px;
-        width: 30%;
+        width: 45%;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
-    .middleSite
+    .header-rightSite
     {
-        width: 50%;
-        padding: auto;
+        width: auto;
+        display:flex;
         margin-left: 50px;
+        margin-right: 50px;
 
-        h2
+        .header-rightSite-ul
         {
-            color: blue;
-            opacity: 50%;
-            font-weight: normal;
-            font-family: 'Hind Guntur', sans-serif;
-            font-size: 2.7em;
+            display: flex;
+            padding-left:0;
+            align-items: center;
+        }
+
+        .header-rightSite-li
+        {
+            list-style-type: none;
         }
     }
 
-    .rightSite
+    .header-logoLink
     {
-        display:flex;
-        margin-right: 20%;
-        margin: 20px;
-        padding: 20px
+        padding-right: 20px;
     }
 
-    .logoLink
-    {
-        padding-left: 2%;
-    }
-
-    .iconFacebook
+    .header-iconFacebook
     {
         color: blueviolet;
         width: 50px;
         height: 50px;
     }
 
-    .iconInstagram
+    .header-iconInstagram
     {
         color: green;
         width: 50px;
         height: 50px;
     }
 
-    .iconLink
+    .header-iconLink
     {
+        padding-top: 20px;
         margin-right: 15px;
     }
 
-    .logoImg:hover
+    .header-logoLink:hover
     {
         opacity: 50%;
     }
 
-    .iconFacebook:hover
+    .header-iconFacebook:hover
     {
         color: rgb(2, 2, 95);
         width: 55px;
@@ -86,7 +78,7 @@
         border-bottom-style:solid;
     }
 
-    .iconInstagram:hover
+    .header-iconInstagram:hover
     {
         color: rgb(1, 68, 1);
         width: 55px;
@@ -96,26 +88,118 @@
     }
 }
 
+
+
+//// Main body
 .mainbody
 {
     display: flex;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 98vh;
+    margin-bottom: 5px;
+    background-color: white;
 }
 
+
+
+//// Navbar
+.navbar
+{
+    margin-bottom: 10px;
+    display: flex;
+    height: auto;
+    background-color: whitesmoke;
+    min-width: 500px;
+
+    .navbar-ul
+    {
+        height: auto;
+        padding-left: 2.5px;
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 15%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color:deepskyblue;
+    }
+
+    .navbar-li
+    {
+        list-style-type: none;
+        height: auto;   
+    }
+
+    .navbar-li-link
+    {
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color:deepskyblue;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-decoration: none;
+    }
+
+    .navbar-li-link:hover
+    {
+        background-color: lightblue;
+        color: red;
+        font-weight: bold;
+    }
+
+    .navbar-li-link:active
+    {
+        background-color: white;
+        color: black;
+    }
+}
+
+
+
+//// Slidebar
 .slidebar
 {
     background-color: lightblue;
     border-style: solid;
     border-radius: 20px;
     border-width: 0px;
-    height: 90%;
-    width: 20%;
+    height: auto;
+    width: 15%;
+    min-width: 200px;
     margin-left: 5px;
+
+    .slidebar-ul
+    {
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-color:blueviolet;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding-left: 0px;
+        list-style-type: none;
+        align-items: center;
+    }
+
+    .slidebar-li
+    {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-color:blueviolet;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+    }
 }
 
+
+
+//// Content body
 .contentBody
 {
     background-color: whitesmoke;
@@ -123,8 +207,20 @@
     border-radius: 20px;
     border-width: 1px;
     border-color: rgb(196, 176, 176);
-    width: 78.8%;
-    height: 90%;
+    width: 85%;
+    min-width: 600px;
+    height: auto;
     margin-left: 5px;
     margin-right: 5px;
-} 
+}
+
+
+
+//// Pri velkem zmenseni okna prohlizece
+@media screen and (max-width: 1000px) 
+{
+    .header
+    {
+        flex-direction: column;
+    }
+}
