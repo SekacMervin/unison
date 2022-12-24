@@ -4,9 +4,8 @@ import { Outlet, Link } from "react-router-dom";
 import Styles from "./Styles.scss";
 
 // Icons
-import logoInzert from '../Images/logo-inzert.png';
-import logoUnison from '../Images/logo-unison.png';
-import { Facebook,Instagram,Cash,Cart3,Eyeglasses,PersonRolodex } from 'react-bootstrap-icons'
+import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
+          Search, ClipboardPlus} from 'react-bootstrap-icons'
 
 
 const Layout = () => {
@@ -14,12 +13,7 @@ const Layout = () => {
       <>
         <div className="header">
           <div className="header-leftSite">
-            <Link to="/" className="header-logoLink" title="Unison">
-              <img className="header-logoLink" src={logoUnison} alt="Logo unison"/>
-            </Link>
-            <Link to="/" className="header-logoLink" title="Inzert">
-              <img className="header-logoLink" src={logoInzert} alt="Logo inzert"/>
-            </Link>
+            <h2>UNISON</h2>
           </div>
           <div style={{width: "30%"}}></div>
           <div className="header-rightSite">
@@ -54,16 +48,34 @@ const Layout = () => {
             <div className="slidebar">
               <ul className="slidebar-ul">
                 <li className="slidebar-li">
-                  <Cash></Cash> Prodat inzerat
+                  <Link className="slidebar-li-link" to="/addInzert">
+                    <ClipboardPlus className="slidebar-li-link-icon"></ClipboardPlus> Podat inzerat
+                  </Link>
+                </li>
+              </ul>
+              <h4>
+                  Prohlizeni inzeratu
+              </h4>
+              <ul className="slidebar-ul" style={{marginTop: "5px"}}>
+                <li className="slidebar-li">
+                  <Link className="slidebar-li-link" to="/sale">
+                    <Cash className="slidebar-li-link-icon"></Cash> Prodej
+                  </Link>
                 </li>
                 <li className="slidebar-li">
-                  <Cart3></Cart3> Koupit inzerat
+                  <Link className="slidebar-li-link" to="/buy">
+                    <Cart3 className="slidebar-li-link-icon"></Cart3> Koupe
+                  </Link>
                 </li>
                 <li className="slidebar-li">
-                  <Eyeglasses></Eyeglasses> Prohlizet inzerat
+                  <Link className="slidebar-li-link" to="/others">
+                    <PersonRolodex className="slidebar-li-link-icon"></PersonRolodex> Ruzne
+                  </Link>
                 </li>
                 <li className="slidebar-li">
-                  <PersonRolodex></PersonRolodex> Ruzne
+                  <Link className="slidebar-li-link" to="/search">
+                    <Search className="slidebar-li-link-icon"></Search> Hledat
+                  </Link>
                 </li>
               </ul>
             </div>
