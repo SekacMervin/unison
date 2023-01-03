@@ -1,7 +1,7 @@
 
 //// Import backages
 import { Outlet, Link } from "react-router-dom";
-import Styles from "./Styles.scss";
+import Styles from "../Styles/Styles.scss";
 
 // Icons
 import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
@@ -15,7 +15,7 @@ const Layout = () => {
           <div className="header-leftSite">
             <h2>UNISON</h2>
           </div>
-          <div style={{width: "30%"}}></div>
+          
           <div className="header-rightSite">
             <ul className="header-rightSite-ul">
               <li className="header-rightSite-li">

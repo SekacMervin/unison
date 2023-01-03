@@ -1,0 +1,256 @@
+
+//// Header
+.header
+{
+    background-color: lightblue;
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 60px;
+    min-width: 620px;
+    margin-top: 5px;
+
+    .header-leftSite
+    {
+        display: flex;
+        width: 45%;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        h2
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #0396E2;
+            font-weight: 1000;
+            font-size: 30px;
+            margin: 0px;
+        }
+    }
+
+    .header-rightSite
+    {
+        width: auto;
+        display:flex;
+        margin-left: 50px;
+        margin-right: 50px;
+
+        .header-rightSite-ul
+        {
+            display: flex;
+            padding-left:0;
+            align-items: center;
+        }
+
+        .header-rightSite-li
+        {
+            list-style-type: none;
+        }
+    }
+
+    .header-logoLink
+    {
+        padding-right: 20px;
+    }
+
+    .header-iconFacebook
+    {
+        color: blueviolet;
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-iconInstagram
+    {
+        color: green;
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-iconLink
+    {
+        padding-top: 20px;
+        margin-right: 15px;
+    }
+
+    .header-logoLink:hover
+    {
+        opacity: 50%;
+    }
+
+    .header-iconFacebook:hover
+    {
+        width: 35px;
+        height: 35px;
+    }
+
+    .header-iconInstagram:hover
+    {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+
+//// Main body
+.mainbody
+{
+    display: flex;
+    width: 100%;
+    height: 98vh;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+
+
+//// Navbar
+.navbar
+{
+    margin-bottom: 10px;
+    display: flex;
+    height: auto;
+    background-color: whitesmoke;
+    min-width: 620px;
+
+    .navbar-ul
+    {
+        height: auto;
+        padding-left: 2.5px;
+        display: flex;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 15%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color:deepskyblue;
+    }
+
+    .navbar-li
+    {
+        list-style-type: none;
+        height: auto;   
+    }
+
+    .navbar-li-link
+    {
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color:deepskyblue;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-decoration: none;
+    }
+
+    .navbar-li-link:hover
+    {
+        background-color: lightblue;
+        color: red;
+        font-weight: bold;
+    }
+
+    .navbar-li-link:active
+    {
+        background-color: white;
+        color: black;
+    }
+}
+
+
+
+//// Slidebar
+.slidebar
+{
+    background-color: lightblue;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 0px;
+    height: auto;
+    width: 15%;
+    min-width: 200px;
+    margin-left: 5px;
+
+    h4
+    {
+        margin: 0;
+        margin-left: 15px;
+    }
+
+    .slidebar-ul
+    {
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-color:blueviolet;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-color:blueviolet;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding-left: 0px;
+        list-style-type: none;
+        align-items: center;
+    }
+
+    .slidebar-li
+    {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+    }
+
+    .slidebar-li-link
+    {
+        text-decoration: none;
+    }
+
+    .slidebar-li-link-icon
+    {
+        margin-right: 5px;
+        vertical-align: text-top;
+        width: 20px;
+        height: 20px;
+    }
+
+    .slidebar-li-link:hover
+    {
+        text-decoration:underline;
+        color: red;
+    }
+}
+
+
+
+//// Content body
+.contentBody
+{
+    background-color: whitesmoke;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgb(196, 176, 176);
+    width: 85%;
+    min-width: 400px;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+
+
+//// Pri velkem zmenseni okna prohlizece
+@media screen and (max-width: 800px) 
+{
+    .header
+    {
+        flex-direction: column;
+    }
+}
