@@ -1,8 +1,7 @@
 
 //// Import packages
 import React from "react";
-import styles from 'bootstrap/dist/css/bootstrap.css';
-//import Form from "react-bootstrap/Form";
+import styles from "../Styles/Styles.scss";
 
 
 
