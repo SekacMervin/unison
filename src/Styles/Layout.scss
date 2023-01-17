@@ -120,6 +120,7 @@
         border-right-width: 1px;
         border-right-style: solid;
         border-right-color:deepskyblue;
+        width: inherit;   
     }
 
     .navigationbar-li
@@ -155,22 +156,43 @@
 
     .navigationbar-left-empty
     {
-        width: 20%;
-        min-width: 207px;
+        transition: 0.3s;
+        width: 257px;
+        min-width: 257px;
+    }
+
+    .navigationbar-right
+    {
+        width:inherit
     }
 }
 
 
 
-//// Mobile droplist
+//// Navigationbar ve forme short
+.navigationbar-left-empty-sidebar-short
+{
+    transition: 0.3s;
+    width: 77px;
+    min-width: 77px;
+}
+
+
+
+//// Mobile slidebar
 .mobile-navigationbar
 {
     background-color: bisque;
     display: none;
-    height: 50px;
     margin-bottom: 5px;
-    justify-content:flex-end;
     min-width: 375px;
+
+    .mobile-navigationbar-flex-end
+    {
+        display: flex;
+        justify-content: flex-end;
+        height: 50px;
+    }
 
     .mobile-navigationbar-menuIcon
     {
@@ -189,11 +211,6 @@
         margin: 6px 0;
         transition: 0.4s;
     }
-}
-
-.mobile-sidebar
-{
-    display: none;
 }
 
 
@@ -219,16 +236,18 @@
     border-radius: 20px;
     border-width: 0px;
     height: auto;
-    width: 20%;
-    min-width: 200px;
+    width: 250px;
+    min-width: 250px;
     margin-left: 5px;
     padding-top: 30px;
+    transition: 0.3s;
 
     h4
     {
         margin: 0;
         margin-left: 15px;
         font-size: large;
+        transition: 0.3s;
     }
 
     .sidebar-ul
@@ -246,6 +265,7 @@
         padding-left: 0px;
         list-style-type: none;
         align-items: center;
+        transition: 0.3s;
     }
 
     .sidebar-li
@@ -253,6 +273,8 @@
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 20px;
+        transition: 0.3s;
+        font-size: large;
     }
 
     .sidebar-li-link
@@ -264,8 +286,9 @@
     {
         margin-right: 5px;
         vertical-align: text-top;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
+        transition: 0.3s;
     }
 
     .sidebar-li-link:hover
@@ -293,7 +316,7 @@
             height: 5px;
             background-color: royalblue;
             margin: 6px 0;
-            transition: 0.4s;
+            transition: 0.8s;
         }
 
         .bar1
@@ -315,8 +338,8 @@
 
 
 
-//// Nastaveni sidebar ve forme closed
-.sidebar-closed
+//// Nastaveni sidebar ve forme short
+.sidebar-short
 {
     @extend .sidebar;
     background-color: bisque;
@@ -325,7 +348,8 @@
 
     h4
     {
-        display: none;
+        margin-left: -500px;
+        transition: 1s;
     }
 
     .sidebar-head
@@ -334,23 +358,10 @@
         margin-right: 0px;
     }
 
-    .sidebar-li-link-icon
-    {
-        vertical-align:middle;
-        width: 30px;
-        height: 30px;
-    }
-
     .sidebar-li
     {
-        padding-top: 5px;
-        padding-bottom: 5px;
         padding-left: 10px;
-    }
-
-    .sidebar-li-link
-    {
-        font-size: 0;
+        font-size: 0px;
     }
 
     .sidebar-head
@@ -372,10 +383,20 @@
     }
 }
 
-.navigationbar-left-empty-sidebar-closed
+
+
+///
+.mobile-sidebar
 {
-    width: 77px;
-    min-width: 77px;
+    transition: 0.3s;
+    height: 0px
+}
+
+.mobile-sidebar-open
+{
+    @extend .mobile-sidebar;
+    display: block;
+    height: 100px;
 }
 
 
@@ -429,7 +450,7 @@
             display: none;
         }
 
-        .navigationbar-left-empty-sidebar-closed
+        .navigationbar-left-empty-sidebar-short
         {
             display: none;
         }
@@ -437,7 +458,7 @@
 
     .mobile-navigationbar
     {
-        display: flex;
+        display: block;
     }
     
     .sidebar

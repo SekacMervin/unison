@@ -13,22 +13,36 @@ import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
 
 //// Return Layout
 const Layout = () => {
+
     const [sidebar, setSidebar] = useState("sidebar");
     const [navigationEmpty, setNavigationEmpty] = useState("navigationbar-left-empty");
+    const [mobileSidebar, setMobileSidebar] = useState("mobile-sidebar");
 
     // Funkce meni Slidebar 
     const ChangeSidebar = () =>
     {
-      // Normal sidebar
       if(sidebar === "sidebar")
       {
-        setSidebar("sidebar-closed");
-        setNavigationEmpty("navigationbar-left-empty-sidebar-closed");
+        setNavigationEmpty("navigationbar-left-empty-sidebar-short");
+        setSidebar("sidebar-short");
       }
       else
       {
         setSidebar("sidebar");
         setNavigationEmpty("navigationbar-left-empty");
+      }
+    }
+
+    // Funkce meni mobile sidebar
+    const ChangeMobileSidebar = () =>
+    {
+      if(mobileSidebar === "mobile-sidebar")
+      {
+        setMobileSidebar("mobile-sidebar-open");
+      }
+      else
+      {
+        setMobileSidebar("mobile-sidebar");
       }
     }
 
@@ -55,28 +69,32 @@ const Layout = () => {
         </div>
         <div className="navigationbar">
           <div className={navigationEmpty}></div>
-          <ul className="navigationbar-ul">
-            <li className="navigationbar-li">
-              <Link className="navigationbar-li-link" to="/">Home</Link>
-            </li>
-            <li className="navigationbar-li">
-              <Link className="navigationbar-li-link" to="/price">Cenik inzerce</Link>
-            </li>
-            <li className="navigationbar-li">
-              <Link className="navigationbar-li-link" to="/contact">Kontakt</Link>
-            </li>
-          </ul>
+          <div className="navigationbar-right">
+            <ul className="navigationbar-ul">
+              <li className="navigationbar-li">
+                <Link className="navigationbar-li-link" to="/">Home</Link>
+              </li>
+              <li className="navigationbar-li">
+                <Link className="navigationbar-li-link" to="/price">Cenik inzerce</Link>
+              </li>
+              <li className="navigationbar-li">
+                <Link className="navigationbar-li-link" to="/contact">Kontakt</Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="mobile-navigationbar">
-          <div className="mobile-navigationbar-menuIcon">
+          <div className="mobile-navigationbar-flex-end">
+            <div className="mobile-navigationbar-menuIcon" onClick={() => ChangeMobileSidebar()}>
               <div class="mobile-bar1"></div>
               <div class="mobile-bar2"></div>
               <div class="mobile-bar3"></div>
             </div>
+          </div>
+          <div className={mobileSidebar}>
+          </div>
         </div>
-        <div className="mobile-sidebar">
-          kuk
-        </div>
+        
         <div className="mainbody">
             <div className={sidebar}  id="sidebar">
               <div className="sidebar-head">
@@ -92,7 +110,7 @@ const Layout = () => {
               <ul className="sidebar-ul">
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/addInzert">
-                    <ClipboardPlus className="sidebar-li-link-icon"></ClipboardPlus> Vytvorit
+                    <ClipboardPlus className="sidebar-li-link-icon"></ClipboardPlus>Vytvorit 
                   </Link>
                 </li>
               </ul>
