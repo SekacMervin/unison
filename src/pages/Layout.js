@@ -14,9 +14,13 @@ import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
 //// Return Layout
 const Layout = () => {
 
+    // Pro slidebar
     const [sidebar, setSidebar] = useState("sidebar");
     const [navigationEmpty, setNavigationEmpty] = useState("navigationbar-left-empty");
+
+    // Pro mobile-slidebar
     const [mobileSidebar, setMobileSidebar] = useState("mobile-sidebar");
+    const [mobileNavigationbar, setMobileNavigationbar] = useState("mobile-navigationbar");
 
     // Funkce meni Slidebar 
     const ChangeSidebar = () =>
@@ -38,10 +42,12 @@ const Layout = () => {
     {
       if(mobileSidebar === "mobile-sidebar")
       {
+        setMobileNavigationbar("mobile-navigationbar-open");
         setMobileSidebar("mobile-sidebar-open");
       }
       else
       {
+        setMobileNavigationbar("mobile-navigationbar");
         setMobileSidebar("mobile-sidebar");
       }
     }
@@ -83,7 +89,7 @@ const Layout = () => {
             </ul>
           </div>
         </div>
-        <div className="mobile-navigationbar">
+        <div className={mobileNavigationbar}>
           <div className="mobile-navigationbar-flex-end">
             <div className="mobile-navigationbar-menuIcon" onClick={() => ChangeMobileSidebar()}>
               <div class="mobile-bar1"></div>
@@ -92,6 +98,48 @@ const Layout = () => {
             </div>
           </div>
           <div className={mobileSidebar}>
+            <hr></hr>
+            <div className="mobile-sidebar-flex">
+              <div style={{width: "170px"}}>
+                <h4>
+                  Pridani inzeratu
+                </h4>
+                <ul className="mobile-sidebar-ul">
+                  <li className="mobile-sidebar-li">
+                    <Link className="mobile-sidebar-li-link" to="/addInzert">
+                        <ClipboardPlus className="mobile-sidebar-li-link-icon"></ClipboardPlus>Vytvorit
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div style={{width: "170px"}}>
+                <h4>
+                  Prohlizeni inzeratu
+                </h4>
+                <ul className="mobile-sidebar-ul">
+                  <li className="mobile-sidebar-li">
+                    <Link className="mobile-sidebar-li-link" to="/sale">
+                        <Cash className="mobile-sidebar-li-link-icon"></Cash>Prodej
+                    </Link>
+                  </li>
+                  <li className="mobile-sidebar-li">
+                    <Link className="mobile-sidebar-li-link" to="/buy">
+                        <Cart3 className="mobile-sidebar-li-link-icon"></Cart3>Koupe
+                    </Link>
+                  </li>
+                  <li className="mobile-sidebar-li">
+                    <Link className="mobile-sidebar-li-link" to="/others">
+                        <PersonRolodex className="mobile-sidebar-li-link-icon"></PersonRolodex>Ruzne
+                    </Link>
+                  </li>
+                  <li className="mobile-sidebar-li">
+                    <Link className="mobile-sidebar-li-link" to="/search">
+                        <Search className="mobile-sidebar-li-link-icon"></Search>Hledat
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -110,7 +158,9 @@ const Layout = () => {
               <ul className="sidebar-ul">
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/addInzert">
-                    <ClipboardPlus className="sidebar-li-link-icon"></ClipboardPlus>Vytvorit 
+                    <div style={{display: "flex"}}>
+                      <ClipboardPlus className="sidebar-li-link-icon"></ClipboardPlus><div className="slidebar-text"> Vytvorit </div>
+                    </div>
                   </Link>
                 </li>
               </ul>
@@ -120,22 +170,30 @@ const Layout = () => {
               <ul className="sidebar-ul">
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/sale">
-                    <Cash className="sidebar-li-link-icon"></Cash> Prodej
+                    <div style={{display: "flex"}}>
+                      <Cash className="sidebar-li-link-icon"></Cash><div className="slidebar-text"> Prodej</div>
+                    </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/buy">
-                    <Cart3 className="sidebar-li-link-icon"></Cart3> Koupe
+                    <div style={{display: "flex"}}>
+                      <Cart3 className="sidebar-li-link-icon"></Cart3><div className="slidebar-text"> Koupe</div>
+                    </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/others">
-                    <PersonRolodex className="sidebar-li-link-icon"></PersonRolodex> Ruzne
+                    <div style={{display: "flex"}}>
+                      <PersonRolodex className="sidebar-li-link-icon"></PersonRolodex><div className="slidebar-text"> Ruzne</div>
+                    </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
                   <Link className="sidebar-li-link" to="/search">
-                    <Search className="sidebar-li-link-icon"></Search> Hledat
+                    <div style={{display: "flex"}}>
+                      <Search className="sidebar-li-link-icon"></Search><div className="slidebar-text"> Hledat</div>
+                    </div>
                   </Link>
                 </li>
               </ul>

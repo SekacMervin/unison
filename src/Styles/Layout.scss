@@ -186,7 +186,7 @@
     display: none;
     margin-bottom: 5px;
     min-width: 375px;
-
+    
     .mobile-navigationbar-flex-end
     {
         display: flex;
@@ -209,7 +209,28 @@
         height: 5px;
         background-color: royalblue;
         margin: 6px 0;
-        transition: 0.4s;
+        transition: 0.8s;
+    }
+}
+
+.mobile-navigationbar-open
+{
+    @extend .mobile-navigationbar;
+    background-color: lightblue;
+
+    .mobile-bar1
+    {
+        transform: translate(0, 11px) rotate(-45deg);
+    }
+
+    .mobile-bar2
+    {
+        opacity: 0;
+    }
+
+    .mobile-bar3
+    {
+        transform: translate(0, -11px) rotate(45deg);
     }
 }
 
@@ -247,7 +268,7 @@
         margin: 0;
         margin-left: 15px;
         font-size: large;
-        transition: 0.3s;
+        transition: 0.5s;
     }
 
     .sidebar-ul
@@ -284,11 +305,16 @@
 
     .sidebar-li-link-icon
     {
-        margin-right: 5px;
+        margin-right: 10px;
         vertical-align: text-top;
         width: 30px;
         height: 30px;
         transition: 0.3s;
+    }
+
+    .slidebar-text
+    {
+        transition: 0.5s;
     }
 
     .sidebar-li-link:hover
@@ -349,7 +375,6 @@
     h4
     {
         margin-left: -500px;
-        transition: 1s;
     }
 
     .sidebar-head
@@ -361,7 +386,12 @@
     .sidebar-li
     {
         padding-left: 10px;
-        font-size: 0px;
+    }
+
+    .slidebar-text
+    {
+        margin-left: -500px;
+        opacity: 0;
     }
 
     .sidebar-head
@@ -385,18 +415,105 @@
 
 
 
-///
+//// Mobile sidebar
 .mobile-sidebar
 {
-    transition: 0.3s;
-    height: 0px
+    transition: 0.4s;
+    height: 0px;
+
+    .mobile-sidebar-flex
+    {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    hr
+    {
+        margin: 0px;
+        margin-left: 20px;
+        margin-right: 20px;
+        opacity: 0;
+        padding: 0px;
+        transition: 1s;
+    }
+
+    h4
+    {
+        margin-left: -500px;
+        margin-bottom: 0px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left: 15px;
+        font-size:medium;
+        transition: 0.5s;
+    }
+
+    .mobile-sidebar-ul
+    {
+        margin-left: -500px;
+        margin-top: 5px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+        padding-left: 30px;
+        list-style-type: none;
+        align-items: center;
+        width: 200px;
+        transition: 0.5s;
+    }
+
+    .mobile-sidebar-li
+    {
+        font-size: medium;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .mobile-sidebar-li-link
+    {
+        text-decoration: none;
+    }
+
+    .mobile-sidebar-li-link-icon
+    {
+        margin-right: 10px;
+        vertical-align: text-top;
+        width: 20px;
+        height: 20px;
+    }
+
+    .mobile-sidebar-li-link:hover
+    {
+        text-decoration:underline;
+        color: red;
+    }
 }
 
+
+
+//// Mobile sidebar open
 .mobile-sidebar-open
 {
     @extend .mobile-sidebar;
     display: block;
-    height: 100px;
+    height: 200px;
+
+    h4
+    {
+        //transition: 1s;
+        margin-left: 0px;
+    }
+
+    hr
+    {
+        opacity: 0.5;
+    }
+
+    .mobile-sidebar-ul
+    {
+        margin-left: 0px;
+    }
 }
 
 
