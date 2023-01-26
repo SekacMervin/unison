@@ -1,8 +1,9 @@
 
 //// Import packages
 import React from "react";
-import {GetTextArea} from "../Components/Inputs";
-
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import styles from "../Styles/Styles.scss";
 
 
 //// Function
@@ -14,7 +15,9 @@ const AddInzert = () =>
                 Pridani inzeratu
             </h3>
             <hr></hr>
-            <GetTextArea/>
+            <TextField multiline auto minRows={5} label="Text inzeratu"></TextField>
+            <br></br>
+            <Button className="button-moje" variant="outlined" id="neco" >Ahoj</Button>
         </>
     );
 };
