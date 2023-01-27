@@ -198,7 +198,7 @@ const Layout = () => {
                 </li>
               </ul>
             </div>
-            <div className="contentBody">
+            <div className="contentBody" id="contentBody">
                 <Outlet />
             </div>
         </div>

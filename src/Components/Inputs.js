@@ -1,6 +1,7 @@
 
 //// Import packages
 import React from "react";
+import TextField from '@mui/material/TextField';
 import styles from "../Styles/Styles.scss";
 
 
@@ -14,12 +15,15 @@ const GetInput = (props) =>
     )
 }
 
+
+
 // Text area
-export const GetTextArea = (props) =>
+export const GetTextField = (props) =>
 {
     return(
-        <textarea className="form-control" rows={3}>neco tu je?</textarea>
-        //<Form.Control className="form-control" as="textarea" row={3}></Form.Control>
+        <>
+            <TextField id="GetTextField" multiline auto minRows={props.minRows} label={props.label}></TextField>
+        </>
     );
 }
 

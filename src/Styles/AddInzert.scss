@@ -1,0 +1,61 @@
+
+
+//// Text
+h3.addInzert-normal
+{
+    margin:10px
+}
+
+div.addInzert-text-normal
+{
+    font-size: medium;
+    margin: 10px;
+}
+
+
+
+//// Inputs
+.addInzert-textField
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+
+    .addInzert-textField-body
+    {
+        width: 100%;
+        max-width: 1000px;
+    }
+}
+
+
+
+//// Button
+.addInzert-sent-button
+{
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+
+
+//// Sekce s informacema o inzeratu
+.addInzert-inzert-info
+{
+    margin: 10px;
+
+    .addInzert-inzert-info-image-div
+    {
+        display: flex;
+    }
+}
+
+
+
+//// Sekce s informacema o uzivateli
+.addInzert-user-info
+{
+    margin: 10px;
+}

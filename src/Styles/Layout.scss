@@ -241,7 +241,7 @@
 {
     display: flex;
     width: 100%;
-    height: 98vh;
+    height: fit-content;
     margin-bottom: 5px;
     background-color: white;
     min-width: 375px;
@@ -256,7 +256,7 @@
     border-style: solid;
     border-radius: 20px;
     border-width: 0px;
-    height: auto;
+    min-height: 1000px;
     width: 250px;
     min-width: 250px;
     margin-left: 5px;
@@ -527,7 +527,8 @@
     border-width: 1px;
     border-color: rgb(196, 176, 176);
     width: inherit;   
-    height: auto;
+    height:fit-content;
+    min-height: 1000px;
     margin-left: 5px;
     margin-right: 5px;
     padding: 10px;
@@ -536,7 +537,7 @@
 
 
 // Pri velkem zmenseni okna prohlizece
-@media screen and (max-width: 800px) 
+@media screen and (max-width: 1000px) 
 {
     .header
     {
