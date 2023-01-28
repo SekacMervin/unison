@@ -81,7 +81,7 @@ const Layout = () => {
                 <Link className="navigationbar-li-link" to="/">Home</Link>
               </li>
               <li className="navigationbar-li">
-                <Link className="navigationbar-li-link" to="/price">Cenik inzerce</Link>
+                <Link className="navigationbar-li-link" to="/price">Ceník</Link>
               </li>
               <li className="navigationbar-li">
                 <Link className="navigationbar-li-link" to="/contact">Kontakt</Link>

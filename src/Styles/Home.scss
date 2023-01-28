@@ -1,0 +1,84 @@
+
+//// Text
+h3.home-normal
+{
+    margin:10px
+}
+
+div.home-text-normal
+{
+    font-size: medium;
+    margin: 10px;
+}
+
+
+
+//// Rozlozeni stranky
+.home-body
+{
+    display: flex;
+    width: 100%;
+
+    .home-body-text
+    {
+        width: 70%;
+    }
+
+    .home-body-other
+    {
+        width: 30%;
+    }
+}
+
+
+//// Info blok
+.home-info-segment
+{
+    margin: 10px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    .home-text-segment
+    {
+        width: 100%;
+        margin-right: 10px;
+
+        h4
+        {
+            margin-bottom: 20px;
+        }
+
+        h6
+        {
+            color: blueviolet;
+            font-style: oblique;
+        }
+    }
+}
+
+
+
+// Pri velkem zmenseni okna prohlizece
+@media screen and (max-width: 1000px) 
+{
+    .home-body
+    {
+        .home-body-other
+        {
+            width: 0%;
+        }
+
+        .home-body-text
+        {
+        width: 100%;
+        }
+    }
+
+    .home-info-segment
+    {
+        .home-text-segment
+        {
+            width: 100%;
+        }
+    }
+}
