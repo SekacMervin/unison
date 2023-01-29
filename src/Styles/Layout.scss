@@ -1,4 +1,13 @@
 
+
+//// Web-Body
+.web-body
+{
+    width: 100%;
+}
+
+
+
 //// Header
 .header
 {
@@ -107,6 +116,7 @@
     height: auto;
     background-color: whitesmoke;
     min-width: 375px;
+    width: 100%;
 
     .navigationbar-ul
     {
@@ -117,9 +127,9 @@
         padding-left: 0px;
         padding-top: 20px;
         padding-bottom: 20px;
-        border-right-width: 1px;
-        border-right-style: solid;
-        border-right-color:deepskyblue;
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-left-color:deepskyblue;
         width: inherit;   
     }
 
@@ -131,9 +141,9 @@
 
     .navigationbar-li-link
     {
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-left-color:deepskyblue;
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color:deepskyblue;
         padding-left: 20px;
         padding-right: 20px;
         padding-top: 20px;
@@ -182,6 +192,7 @@
 //// Mobile slidebar
 .mobile-navigationbar
 {
+    width: 100%;
     background-color: bisque;
     display: none;
     margin-bottom: 5px;
@@ -418,6 +429,7 @@
 //// Mobile sidebar
 .mobile-sidebar
 {
+    width: 100%;
     transition: 0.4s;
     height: 0px;
 
@@ -526,7 +538,7 @@
     border-radius: 20px;
     border-width: 1px;
     border-color: rgb(196, 176, 176);
-    width: inherit;   
+    width: 100%;   
     height:fit-content;
     min-height: 1000px;
     margin-left: 5px;
@@ -582,11 +594,6 @@
     .sidebar
     {
         display: none;
-    }
-
-    .contentBody
-    {
-        width: 100%;
     }
 
     .mobile-sidebar

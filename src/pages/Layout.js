@@ -53,7 +53,7 @@ const Layout = () => {
     }
 
     return (
-      <>
+      <div className="web-body">
         <div className="header">
           <div className="header-leftSite">
             <h2>UNISON</h2>
@@ -142,7 +142,6 @@ const Layout = () => {
             </div>
           </div>
         </div>
-        
         <div className="mainbody">
             <div className={sidebar}  id="sidebar">
               <div className="sidebar-head">
@@ -199,10 +198,10 @@ const Layout = () => {
               </ul>
             </div>
             <div className="contentBody" id="contentBody">
-                <Outlet />
+              <Outlet />
             </div>
         </div>
-      </>
+      </div>
     )
   };
 
