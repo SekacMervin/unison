@@ -40,25 +40,10 @@ div.price-text-normal
                 font-style: oblique;
             }
         }
+
+        .price-priceList-segment-img
+        {
+            overflow-x: auto;
+        }
     }
 }
-
-
-
-// // Pri velkem zmenseni okna prohlizece
-// @media screen and (max-width: 1000px) 
-// {
-//     .price-body
-//     {
-//         .price-priceList-segment
-//         {
-//             .price-priceList-segment-text
-//             {
-//                 img
-//                 {
-//                     width: 300px;
-//                 }
-//             }   
-//         }
-//     }
-// }

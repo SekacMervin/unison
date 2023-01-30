@@ -25,8 +25,9 @@ const Price = () =>
                         <h4>
                             Vlašimsko - ceny pro rok 2022
                         </h4>
-                        <img src={CenikVlasim} alt="Cenik_Vlasim" title="Cenik_Vlasim">
-                        </img>
+                        <div className="price-priceList-segment-img">
+                            <img src={CenikVlasim} alt="Cenik_Vlasim" title="Cenik_Vlasim"></img>
+                        </div>
                     </div>
                 </div>
                 <div className="price-priceList-segment">
@@ -34,8 +35,9 @@ const Price = () =>
                         <h4>
                             Benešovsko - ceny pro rok 2022
                         </h4>
-                        <img src={CenikBenesov} alt="Cenik_Benesov" title="Cenik_Benesov">
-                        </img>
+                        <div className="price-priceList-segment-img">
+                            <img src={CenikBenesov} alt="Cenik_Benesov" title="Cenik_Benesov"></img>
+                        </div>
                     </div>
                 </div>
             </div>

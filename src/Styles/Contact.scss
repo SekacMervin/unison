@@ -1,0 +1,81 @@
+
+//// Text
+h3.contact-normal
+{
+    margin:10px
+}
+
+div.contact-text-normal
+{
+    font-size: medium;
+    margin: 10px;
+}
+
+
+
+//// Rozlozeni stranky
+.contact-body
+{
+    width: 100%;
+
+    .contact-info-segment
+    {
+        margin: 10px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+
+        .contact-info-segment-text
+        {
+            width: 100%;
+            margin-right: 10px;
+
+            h4
+            {
+                margin-bottom: 20px;
+            }
+
+            h6
+            {
+                color: blueviolet;
+                font-style: oblique;
+            }
+
+            p
+            {
+                width: 70%;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+div.contact-contacts
+{
+    display: flex;
+
+    .contact-contacts-head
+    {
+        width: 100px;
+        margin-right: 50px;
+    }
+}
+
+
+
+// Pri velkem zmenseni okna prohlizece
+@media screen and (max-width: 1000px) 
+{
+    .contact-body
+    {
+        .contact-info-segment
+        {
+            .contact-info-segment-text
+            {
+                p
+                {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
