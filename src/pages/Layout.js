@@ -2,6 +2,7 @@
 //// Import backages
 import { Outlet, Link } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import styles from "../Styles/Styles.scss";
 
 // Icons
@@ -12,7 +13,10 @@ import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
 
 
 //// Return Layout
-const Layout = () => {
+const Layout = (props) => {
+    
+    // Ziskani aktivni stranky
+    const location = useLocation();
 
     // Pro slidebar
     const [sidebar, setSidebar] = useState("sidebar");
@@ -78,13 +82,13 @@ const Layout = () => {
           <div className="navigationbar-right">
             <ul className="navigationbar-ul">
               <li className="navigationbar-li">
-                <Link className="navigationbar-li-link" to="/">Home</Link>
+                <Link className={location.pathname === "/" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/">Home</Link>
               </li>
               <li className="navigationbar-li">
-                <Link className="navigationbar-li-link" to="/price">Ceník</Link>
+                <Link className={location.pathname === "/price" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/price">Ceník</Link>
               </li>
               <li className="navigationbar-li">
-                <Link className="navigationbar-li-link" to="/contact">Kontakt</Link>
+                <Link className={location.pathname === "/contact" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/contact">Kontakt</Link>
               </li>
             </ul>
           </div>
@@ -106,7 +110,7 @@ const Layout = () => {
                 </h4>
                 <ul className="mobile-sidebar-ul">
                   <li className="mobile-sidebar-li">
-                    <Link className="mobile-sidebar-li-link" to="/addInzert">
+                    <Link className={location.pathname === "/addInzert" ? "mobile-sidebar-li-link-active" : "mobile-sidebar-li-link"} to="/addInzert">
                         <ClipboardPlus className="mobile-sidebar-li-link-icon"></ClipboardPlus>Vytvorit
                     </Link>
                   </li>
@@ -118,22 +122,22 @@ const Layout = () => {
                 </h4>
                 <ul className="mobile-sidebar-ul">
                   <li className="mobile-sidebar-li">
-                    <Link className="mobile-sidebar-li-link" to="/sale">
+                    <Link className={location.pathname === "/sale" ? "mobile-sidebar-li-link-active" : "mobile-sidebar-li-link"} to="/sale">
                         <Cash className="mobile-sidebar-li-link-icon"></Cash>Prodej
                     </Link>
                   </li>
                   <li className="mobile-sidebar-li">
-                    <Link className="mobile-sidebar-li-link" to="/buy">
+                    <Link className={location.pathname === "/buy" ? "mobile-sidebar-li-link-active" : "mobile-sidebar-li-link"} to="/buy">
                         <Cart3 className="mobile-sidebar-li-link-icon"></Cart3>Koupe
                     </Link>
                   </li>
                   <li className="mobile-sidebar-li">
-                    <Link className="mobile-sidebar-li-link" to="/others">
+                    <Link className={location.pathname === "/others" ? "mobile-sidebar-li-link-active" : "mobile-sidebar-li-link"}to="/others">
                         <PersonRolodex className="mobile-sidebar-li-link-icon"></PersonRolodex>Ruzne
                     </Link>
                   </li>
                   <li className="mobile-sidebar-li">
-                    <Link className="mobile-sidebar-li-link" to="/search">
+                    <Link className={location.pathname === "/search" ? "mobile-sidebar-li-link-active" : "mobile-sidebar-li-link"} to="/search">
                         <Search className="mobile-sidebar-li-link-icon"></Search>Hledat
                     </Link>
                   </li>
@@ -156,7 +160,7 @@ const Layout = () => {
               </h4>
               <ul className="sidebar-ul">
                 <li className="sidebar-li">
-                  <Link className="sidebar-li-link" to="/addInzert">
+                  <Link className={location.pathname === "/addInzert" ? "sidebar-li-link-active" : "sidebar-li-link"} to="/addInzert">
                     <div style={{display: "flex"}}>
                       <ClipboardPlus className="sidebar-li-link-icon"></ClipboardPlus><div className="slidebar-text"> Vytvorit </div>
                     </div>
@@ -168,28 +172,28 @@ const Layout = () => {
               </h4>
               <ul className="sidebar-ul">
                 <li className="sidebar-li">
-                  <Link className="sidebar-li-link" to="/sale">
+                  <Link className={location.pathname === "/sale" ? "sidebar-li-link-active" : "sidebar-li-link"} to="/sale">
                     <div style={{display: "flex"}}>
                       <Cash className="sidebar-li-link-icon"></Cash><div className="slidebar-text"> Prodej</div>
                     </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
-                  <Link className="sidebar-li-link" to="/buy">
+                  <Link className={location.pathname === "/buy" ? "sidebar-li-link-active" : "sidebar-li-link"} to="/buy">
                     <div style={{display: "flex"}}>
                       <Cart3 className="sidebar-li-link-icon"></Cart3><div className="slidebar-text"> Koupe</div>
                     </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
-                  <Link className="sidebar-li-link" to="/others">
+                  <Link className={location.pathname === "/others" ? "sidebar-li-link-active" : "sidebar-li-link"} to="/others">
                     <div style={{display: "flex"}}>
                       <PersonRolodex className="sidebar-li-link-icon"></PersonRolodex><div className="slidebar-text"> Ruzne</div>
                     </div>
                   </Link>
                 </li>
                 <li className="sidebar-li">
-                  <Link className="sidebar-li-link" to="/search">
+                  <Link className={location.pathname === "/search" ? "sidebar-li-link-active" : "sidebar-li-link"} to="/search">
                     <div style={{display: "flex"}}>
                       <Search className="sidebar-li-link-icon"></Search><div className="slidebar-text"> Hledat</div>
                     </div>

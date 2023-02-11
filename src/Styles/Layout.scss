@@ -158,10 +158,12 @@
         font-weight: bold;
     }
 
-    .navigationbar-li-link:active
+    .navigationbar-li-link-active
     {
-        background-color: white;
-        color: black;
+        @extend .navigationbar-li-link;
+        background-color: lightblue;
+        color: red;
+        font-weight: bold;
     }
 
     .navigationbar-left-empty
@@ -334,6 +336,18 @@
         color: red;
     }
 
+    .sidebar-li-link-active
+    {
+        text-decoration: none;
+        color: red;
+    }
+
+    .sidebar-li-link-active:hover
+    {
+        text-decoration: underline;
+        color: red;
+    }
+
     .sidebar-head
     {
         justify-content:flex-end;
@@ -498,6 +512,12 @@
     .mobile-sidebar-li-link:hover
     {
         text-decoration:underline;
+        color: red;
+    }
+
+    .mobile-sidebar-li-link-active
+    {
+        text-decoration: none;
         color: red;
     }
 }
