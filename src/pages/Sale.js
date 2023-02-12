@@ -1,6 +1,62 @@
+
+//// Import packages
+import React from "react";
+import { useState, useEffect} from "react";
+import styles from "../Styles/Styles.scss";
+
+
+
+//// Function
 const Sale = () => 
 {
-    return <h1>Sale</h1>;
+    const [inzerts, setInzerts] = useState([]);
+    const [sentRequest, setSentRequest] = useState(true);
+
+
+    const GetBuyInzerts = async () =>
+    {
+        const inzertData = await GetBuyInzertsFromDatabase();
+        setSentRequest(false);
+        setInzerts(inzertData);
+    }
+
+
+    /// Posle dotaz do Api o inzerty typu prodam
+    if(sentRequest)
+    {
+        GetBuyInzerts()
+    }
+    
+
+    return(
+        <>
+            <h3 className="contact-normal">
+                Prodej
+            </h3>
+            <hr></hr>
+            <div>
+                {inzerts.map(inzert => <div>{inzert.text}</div>)}
+            </div>
+        </>
+    );
 };
 
 export default Sale;
+
+
+
+/// 
+const GetBuyInzertsFromDatabase =  async () =>
+{
+    try
+    {
+        const response = await fetch("https://localhost:7020/api/inzert");
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    catch(Error)
+    {
+        console.error('There was a problem with the fetch operation:', Error);
+    }
+}

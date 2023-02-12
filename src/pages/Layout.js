@@ -13,7 +13,7 @@ import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
 
 
 //// Return Layout
-const Layout = (props) => {
+const Layout = () => {
     
     // Ziskani aktivni stranky
     const location = useLocation();
