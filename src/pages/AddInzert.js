@@ -31,11 +31,19 @@ const AddInzert = () =>
     const [text, setText] = useState("");
     const [lengthText, setLengthText] = useState(0);
     const [textLabel, setTextLabel] = useState("Text inzerátu (500/0)");
+    const [code,setCode] = useState(Math.floor(Math.random()*(1000-100)+100));
     const [section,setSection] = useState("");
     const [post,setPost] = useState("");
     const [photo1, setPhoto1] = useState("");
     const [photo2, setPhoto2] = useState("");
-    const [agree, setAgree] = useState(false);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [telephoneNumber, setTelephoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [street, setStreet] = useState("");
+    const [city, setCity] = useState("");
+    const [zipCode, setZipCode] = useState("");
+    const [checkCode, setCheckCode] = useState();
 
 
     // Nastaveni textu
@@ -61,7 +69,9 @@ const AddInzert = () =>
     // Nastaveni fotografie 1
     const Photo1Change = (event) =>
     {
-        setPhoto1(event.target.value);
+        const file = event.target.files[0];
+        setPhoto1(file);
+        console.log(photo1);
     }
 
     // Nastaveni fotografie 2
@@ -70,21 +80,71 @@ const AddInzert = () =>
         setPhoto2(event.target.value);
     }
 
-    // Nastaveni checkboxu se souhlasem s podminkama
-    const AgreeChange = (event) =>
+    // Nastaveni krestnyho jmena
+    const FirstNameChange = (event) =>
     {
-        setAgree(event.target.value);
+        setFirstName(event.target.value);
+    }
+
+    // Nastaveni prijmeni 
+    const LastNameChange = (event) =>
+    {
+        setLastName(event.target.value);
+    }
+
+    // Nastaveni telefoniho cisla
+    const TelephoneNumberChange = (event) =>
+    {
+        setTelephoneNumber(event.target.value);
+    }
+
+    // Nastaveni emailu
+    const EmailChange = (event) =>
+    {
+        setEmail(event.target.value);
+    }
+
+    // Nastaveni ulice
+    const StreetChange = (event) =>
+    {
+        setStreet(event.target.value);
+    }
+
+    // Nastaveni PSC
+    const ZipCodeChange = (event) =>
+    {
+        setZipCode(event.target.value);
+    }
+
+    // Nastaveni mesta
+    const CityChange = (event) =>
+    {
+        setCity(event.target.value);
+    }
+
+    // Kontrola kontrolniho kodu
+    const CheckCodeChange = (event) =>
+    {
+        setCheckCode(event.target.value);
     }
 
     // InzertSubmit (poslani do api)
     const InzertSubmit = async (event) =>
     {
         event.preventDefault();
-        let sent = window.confirm("Opravdu chcete poslat inzerát?");
-        if(sent)
+        if(checkCode == code)
         {
-            await AddInzertToDatabase(text,post,section);
-            setAgree(false);
+            let sent = window.confirm("Opravdu chcete poslat inzerát?");
+            if(sent)
+            {
+                await AddInzertToDatabase(text,post,section,firstName,lastName,telephoneNumber,email,
+                    street,city,zipCode);
+                document.getElementById('checkboxAgree').click();
+            }
+        }
+        else
+        {
+            alert("Kontrolni bod se neschoduje Vami zadanym kodem!");
         }
     }
 
@@ -151,7 +211,7 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 1
-                                    <input hidden accept="image/*" multiple type="file" onChange={Photo1Change}/>
+                                    <input hidden accept="image/*" type="file" onChange={Photo1Change}/>
                                 </Button>  
                             </Stack>
                         </List>
@@ -159,7 +219,7 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 2
-                                    <input hidden accept="image/*" multiple type="file" onChange={Photo2Change}/>
+                                    <input hidden accept="image/*" type="file" onChange={Photo2Change}/>
                                 </Button>   
                             </Stack>
                         </List>
@@ -167,47 +227,109 @@ const AddInzert = () =>
                 </div>
                 <hr></hr>
                 <div className="addInzert-text-normal">
-                    Informace o Vás (nutné pro přijmutí inzerátu do tiskové verze)
+                    Informace o Vás (nutné pro přijmutí inzerátu)
                 </div>
                 <div className="addInzert-user-info">
                     <List>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="Jméno" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="Jméno" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}}
+                                        required
+                                        onChange={FirstNameChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="Příjmení" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="Příjmení" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}} 
+                                        required
+                                        onChange={LastNameChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="Telefon" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField id="outlined-basic" 
+                                        size="small" 
+                                        label="Telefon" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}}
+                                        required
+                                        onChange={TelephoneNumberChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="E-mail" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="E-mail" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}}
+                                        required
+                                        onChange={EmailChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="Ulice" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="Ulice" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}}
+                                        required
+                                        onChange={StreetChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="Město" variant="outlined" style={{backgroundColor: "white", minWidth: "325px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="Město"
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", minWidth: "325px"}}
+                                        required
+                                        onChange={CityChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
-                            <TextField id="outlined-basic" size="small" label="PSČ" variant="outlined" style={{backgroundColor: "white", width: "150px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="PSČ" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", width: "150px"}}
+                                        required
+                                        onChange={ZipCodeChange}
+                            />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "30px"}}>
-                            <TextField id="outlined-basic" size="small" label="Kontrolní kód **" variant="outlined" style={{backgroundColor: "white", width: "150px"}} />
+                            <TextField  id="outlined-basic" 
+                                        size="small" 
+                                        label="Kontrolní kód **" 
+                                        variant="outlined" 
+                                        style={{backgroundColor: "white", width: "150px"}}
+                                        required
+                                        onChange={CheckCodeChange}
+                            />
                         </ListItem>
                     </List>
                     <div className="addInzert-text-normal">
-                        ** Před odesláním vyplňte tento kód: 365 (slouží k ochraně proti&nbsp;
+                        ** Před odesláním vyplňte tento kód: <b>{code}</b> (slouží k ochraně proti&nbsp;
                          <a href="https://cs.wikipedia.org/wiki/Koment%C3%A1%C5%99ov%C3%BD_spam" target="_blank">
                           komentářovému spamu
                         </a>)
                     </div>
                     <FormControlLabel
-                            control={<Checkbox checked={agree} onChange={AgreeChange} required style={{marginLeft: "10px"}}/>} 
+                            control={<Checkbox  id="checkboxAgree"
+                                                required 
+                                                style={{marginLeft: "10px"}}
+                                    />} 
                             label=" * Souhlasím s podmínkami serveru a zpracováním osobních údajů" 
                     />
                     <div className="addInzert-sent-button">
-                        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+                        <Button type="submit" 
+                                variant="contained" 
+                                endIcon={<SendIcon />}
+                            >
                             Poslat inzerát
                         </Button>
                     </div>
@@ -222,15 +344,28 @@ export default AddInzert;
 
 
 /// Posel dotaz do api o pridani inzeratu do databaze
-const AddInzertToDatabase = async (text,post,selection) =>
+const AddInzertToDatabase = async (text,post,selection,firstName,lastName,
+    telephoneNumber,email,street,city,zipCode) =>
 {
     try
     {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"selection": selection, "post": post, "text": text, "userId": null})
+            body: JSON.stringify({  "selection": selection, 
+                                    "post": post, 
+                                    "text": text, 
+                                    "userId": 14,
+                                    "FirstName": firstName,
+                                    "LastName": lastName,
+                                    "TelefonNumber": telephoneNumber,
+                                    "Email": email,
+                                    "Street": street,
+                                    "City": city,
+                                    "ZipCode": parseInt(zipCode)
+                                })
         };
+        console.log(requestOptions);
     
         const response = await fetch('https://localhost:7020/api/inzert', requestOptions);
     
