@@ -76,5 +76,6 @@ const GetBuyInzertsFromDatabase =  async () =>
     catch(Error)
     {
         console.error('There was a problem with the fetch operation:', Error);
+        return [];
     }
 }

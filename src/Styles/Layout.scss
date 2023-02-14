@@ -1,10 +1,6 @@
 
-
-//// Web-Body
-.web-body
-{
-    width: 100%;
-}
+// Promenne
+$min-width: 500px;
 
 
 
@@ -16,19 +12,20 @@
     width: 100%;
     height: auto;
     min-height: 60px;
-    min-width: 375px;
+    min-width: $min-width;
     margin-top: 5px;
     justify-content: space-between;
 
+    // Pro nazev Unison
     .header-leftSite
     {
-        display: flex;
-        width: 250px;
+        width: auto;
         margin-left: 50px;
         margin-right: 50px;
         padding-top: 20px;
         padding-bottom: 20px;
 
+        // Nazev Unison
         h2
         {
             font-family: Arial, Helvetica, sans-serif;
@@ -39,6 +36,7 @@
         }
     }
 
+    // Pro Odkazi na socialni site
     .header-rightSite
     {
         width: auto;
@@ -58,114 +56,54 @@
         {
             list-style-type: none;
         }
-    }
 
-    .header-logoLink
-    {
-        padding-right: 20px;
-    }
+        .header-rightSite-iconLink
+        {
+            padding-top: 20px;
+            margin-right: 15px;
+        }
 
-    .header-iconFacebook
-    {
-        color: blueviolet;
-        width: 30px;
-        height: 30px;
-    }
+        .header-rightSite-iconFacebook
+        {
+            color: blueviolet;
+            width: 30px;
+            height: 30px;
+        }
 
-    .header-iconInstagram
-    {
-        color: green;
-        width: 30px;
-        height: 30px;
-    }
+        .header-rightSite-iconInstagram
+        {
+            color: green;
+            width: 30px;
+            height: 30px;
+        }
 
-    .header-iconLink
-    {
-        padding-top: 20px;
-        margin-right: 15px;
-    }
+        .header-rightSite-iconFacebook:hover
+        {
+            width: 35px;
+            height: 35px;
+        }
 
-    .header-logoLink:hover
-    {
-        opacity: 50%;
-    }
-
-    .header-iconFacebook:hover
-    {
-        width: 35px;
-        height: 35px;
-    }
-
-    .header-iconInstagram:hover
-    {
-        width: 35px;
-        height: 35px;
-    }
+        .header-rightSite-iconInstagram:hover
+        {
+            width: 35px;
+            height: 35px;
+        }
+    }  
 }
 
 
 
-//// Navbar
+//// Navigationbar
 .navigationbar
 {
-    margin-bottom: 10px;
     display: flex;
     margin-bottom: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
     height: auto;
     background-color: whitesmoke;
-    min-width: 375px;
+    min-width: $min-width;
     width: 100%;
 
-    .navigationbar-ul
-    {
-        height: auto;
-        display: flex;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        padding-left: 0px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-left-color:deepskyblue;
-        width: inherit;   
-    }
-
-    .navigationbar-li
-    {
-        list-style-type: none;
-        height: auto;   
-    }
-
-    .navigationbar-li-link
-    {
-        border-right-width: 1px;
-        border-right-style: solid;
-        border-right-color:deepskyblue;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        text-decoration: none;
-    }
-
-    .navigationbar-li-link:hover
-    {
-        background-color: lightblue;
-        color: red;
-        font-weight: bold;
-    }
-
-    .navigationbar-li-link-active
-    {
-        @extend .navigationbar-li-link;
-        background-color: lightblue;
-        color: red;
-        font-weight: bold;
-    }
-
+    // Leva cast (Pokud slidebar == short display none)
     .navigationbar-left-empty
     {
         transition: 0.3s;
@@ -173,11 +111,82 @@
         min-width: 257px;
     }
 
-    .navigationbar-right
+    .navigationbar-center
     {
-        width:inherit
+        width:auto;
+
+        .navigationbar-center-ul
+        {
+            height: auto;
+            display: flex;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-left: 0px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: auto;   
+        }
+
+        .navigationbar-center-li
+        {
+            list-style-type: none;
+            height: auto;   
+        }
+
+        // leva strana ma border i v levo
+        .navigationbar-center-li-link-left
+        {
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color:deepskyblue;
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color:deepskyblue;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-decoration: none;
+        }
+
+        // Zbytek staci border pouze v pravo
+        .navigationbar-center-li-link
+        {
+            border-right-width: 1px;
+            border-right-style: solid;
+            border-right-color:deepskyblue;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-decoration: none;
+        }
+
+        // Leva strana musi mit svuj "hover"
+        .navigationbar-center-li-link-left:hover
+        {
+            background-color: lightblue;
+            color: red;
+            font-weight: bold;
+        }
+
+        .navigationbar-center-li-link:hover
+        {
+            background-color: lightblue;
+            color: red;
+            font-weight: bold;
+        }
+
+        // Aktivni stranka zustava zvyraznena
+        .navigationbar-center-li-link-active
+        {
+            @extend .navigationbar-center-li-link;
+            background-color: lightblue;
+            color: red;
+            font-weight: bold;
+        }
     }
-}
+}   
 
 
 
@@ -198,7 +207,7 @@
     background-color: bisque;
     display: none;
     margin-bottom: 5px;
-    min-width: 375px;
+    min-width: $min-width;
     
     .mobile-navigationbar-flex-end
     {
@@ -212,8 +221,9 @@
         display: inline-block;
         cursor: pointer;
         margin-right: 15px;
-        padding-top: 5px;
-        padding-bottom: 4px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 4px;
     }
 
     .mobile-bar1, .mobile-bar2, .mobile-bar3
@@ -222,10 +232,13 @@
         height: 5px;
         background-color: royalblue;
         margin: 6px 0;
-        transition: 0.8s;
+        transition: 0.6s;
     }
 }
 
+
+
+// Mobile navigation ve stavu open
 .mobile-navigationbar-open
 {
     @extend .mobile-navigationbar;
@@ -254,10 +267,9 @@
 {
     display: flex;
     width: 100%;
-    height: fit-content;
     margin-bottom: 5px;
     background-color: white;
-    min-width: 375px;
+    min-width: $min-width;
 }
 
 
@@ -269,7 +281,7 @@
     border-style: solid;
     border-radius: 20px;
     border-width: 0px;
-    min-height: 1000px;
+    min-height: 90vh;
     width: 250px;
     min-width: 250px;
     margin-left: 5px;
@@ -352,6 +364,7 @@
     {
         justify-content:flex-end;
         display: flex;
+        margin-top: 5px;
         margin-right: 15px;
         margin-bottom: 30px;
 
@@ -367,7 +380,7 @@
             height: 5px;
             background-color: royalblue;
             margin: 6px 0;
-            transition: 0.8s;
+            transition: 0.6s;
         }
 
         .bar1
@@ -559,8 +572,7 @@
     border-width: 1px;
     border-color: rgb(196, 176, 176);
     width: 100%;   
-    height:fit-content;
-    min-height: 1000px;
+    min-height: 90vh;
     margin-left: 5px;
     margin-right: 5px;
     padding: 10px;
@@ -571,13 +583,13 @@
 // Pri velkem zmenseni okna prohlizece
 @media screen and (max-width: 1000px) 
 {
+    // Header
     .header
     {
         .header-leftSite
         {
             margin-left: 30px;
             margin-right: 0px;
-            width: 150px;
         }
 
         .header-rightSite
@@ -586,26 +598,32 @@
         }
     }
 
+    // Navigationbar
     .navigationbar
     {
         margin-bottom: 2px;
-
-        .navigationbar-ul
-        {
-            margin-left: 10px;
-        }
 
         .navigationbar-left-empty
         {
             display: none;
         }
 
-        .navigationbar-left-empty-sidebar-short
+        .navigationbar-center
         {
-            display: none;
+            .navigationbar-center-ul
+            {
+                margin-left: 10px;
+            }
         }
     }
 
+    // Leva strana v navigationbar pri slidebar == short
+    .navigationbar-left-empty-sidebar-short
+    {
+        display: none;
+    }
+
+    // Mobile navigationbar
     .mobile-navigationbar
     {
         display: block;

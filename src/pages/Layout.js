@@ -8,6 +8,7 @@ import styles from "../Styles/Styles.scss";
 // Icons
 import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
           Search, ClipboardPlus} from 'react-bootstrap-icons'
+import { minHeight } from "@mui/system";
 
 
 
@@ -15,6 +16,9 @@ import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
 //// Return Layout
 const Layout = () => {
     
+    // Get screen height
+    const screenHeight = window.screen.height;
+
     // Ziskani aktivni stranky
     const location = useLocation();
 
@@ -57,7 +61,7 @@ const Layout = () => {
     }
 
     return (
-      <div className="web-body">
+      <div>
         <div className="header">
           <div className="header-leftSite">
             <h2>UNISON</h2>
@@ -65,13 +69,13 @@ const Layout = () => {
           <div className="header-rightSite">
             <ul className="header-rightSite-ul">
               <li className="header-rightSite-li">
-                <a className="header-iconLink" href="https://www.facebook.com" target="_blank" rel="noreferrer" title="Facebook">
-                  <Facebook className="header-iconFacebook" />
+                <a className="header-rightSite-iconLink" href="https://www.facebook.com" target="_blank" rel="noreferrer" title="Facebook">
+                  <Facebook className="header-rightSite-iconFacebook" />
                 </a>
               </li>
               <li className="header-rightSite-li">
-                <a className="header-iconLink" href="https://www.instagram.com" target="_blank" rel="noreferrer" title="Instagram">
-                  <Instagram className="header-iconInstagram" />
+                <a className="header-rightSite-iconLink" href="https://www.instagram.com" target="_blank" rel="noreferrer" title="Instagram">
+                  <Instagram className="header-rightSite-iconInstagram" />
                 </a>
               </li>
             </ul>
@@ -79,16 +83,16 @@ const Layout = () => {
         </div>
         <div className="navigationbar">
           <div className={navigationEmpty}></div>
-          <div className="navigationbar-right">
-            <ul className="navigationbar-ul">
-              <li className="navigationbar-li">
-                <Link className={location.pathname === "/" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/">Home</Link>
+          <div className="navigationbar-center">
+            <ul className="navigationbar-center-ul">
+              <li className="navigationbar-center-li">
+                <Link className={location.pathname === "/" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link-left"} to="/">Home</Link>
               </li>
-              <li className="navigationbar-li">
-                <Link className={location.pathname === "/price" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/price">Ceník</Link>
+              <li className="navigationbar-center-li">
+                <Link className={location.pathname === "/price" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link"} to="/price">Ceník</Link>
               </li>
-              <li className="navigationbar-li">
-                <Link className={location.pathname === "/contact" ? "navigationbar-li-link-active" : "navigationbar-li-link"} to="/contact">Kontakt</Link>
+              <li className="navigationbar-center-li">
+                <Link className={location.pathname === "/contact" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link"} to="/contact">Kontakt</Link>
               </li>
             </ul>
           </div>
