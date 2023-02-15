@@ -1,7 +1,7 @@
 
 //// Import packages
-import React from "react";
-import { useState } from "react";
+import React, { useEffect } from "react";
+import { useState} from "react";
 import styles from "../Styles/Styles.scss";
 
 // Components
@@ -21,7 +21,6 @@ import ListItem from '@mui/material/ListItem';
 
 // Icons
 import SendIcon from '@mui/icons-material/Send';
-import { Tree } from "react-bootstrap-icons";
 
 
 
@@ -32,101 +31,43 @@ const AddInzert = () =>
     const [lengthText, setLengthText] = useState(0);
     const [textLabel, setTextLabel] = useState("Text inzerátu (500/0)");
     const [code,setCode] = useState(Math.floor(Math.random()*(1000-100)+100));
-    const [section,setSection] = useState("");
-    const [post,setPost] = useState("");
-    const [photo1, setPhoto1] = useState("");
-    const [photo2, setPhoto2] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [telephoneNumber, setTelephoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [street, setStreet] = useState("");
-    const [city, setCity] = useState("");
-    const [zipCode, setZipCode] = useState("");
     const [checkCode, setCheckCode] = useState();
+    const [inzertInfo,setInzertInfo] = useState(
+        {
+            text: "",
+            section: null,
+            post: null,
+            photo_1: null,
+            photo_2: null,
+            userId: null,
+            firstName: "",
+            lastName: "",
+            telephoneNumber: "",
+            email: "",
+            street: "",
+            city: "",
+            zipCode: ""
+        }
+    );
+    useEffect(()=>{console.log(inzertInfo)},[inzertInfo]);
 
 
-    // Nastaveni textu
+    // Nastaveni textu a label textu
     const TextChange = (event) =>
     {
         setText(event.target.value);
-        setLengthText(event.target.value.length)
+        setLengthText(event.target.value.length);
         setTextLabel(`Text inzerátu (500/${event.target.value.length})`);
+        setInzertInfo({...inzertInfo,["text"]:event.target.value});
     }
 
-    // Nastaveni rubriky
-    const SectionChange = (event) =>
-    {
-        setSection(event.target.value);
-    }
-
-    // Nastaveni zverejneni
-    const PostChange = (event) =>
-    {
-        setPost(event.target.value);
-    }
-
-    // Nastaveni fotografie 1
-    const Photo1Change = (event) =>
-    {
-        const file = event.target.files[0];
-        setPhoto1(file);
-        console.log(photo1);
-    }
-
-    // Nastaveni fotografie 2
-    const Photo2Change = (event) =>
-    {
-        setPhoto2(event.target.value);
-    }
-
-    // Nastaveni krestnyho jmena
-    const FirstNameChange = (event) =>
-    {
-        setFirstName(event.target.value);
-    }
-
-    // Nastaveni prijmeni 
-    const LastNameChange = (event) =>
-    {
-        setLastName(event.target.value);
-    }
-
-    // Nastaveni telefoniho cisla
-    const TelephoneNumberChange = (event) =>
-    {
-        setTelephoneNumber(event.target.value);
-    }
-
-    // Nastaveni emailu
-    const EmailChange = (event) =>
-    {
-        setEmail(event.target.value);
-    }
-
-    // Nastaveni ulice
-    const StreetChange = (event) =>
-    {
-        setStreet(event.target.value);
-    }
-
-    // Nastaveni PSC
-    const ZipCodeChange = (event) =>
-    {
-        setZipCode(event.target.value);
-    }
-
-    // Nastaveni mesta
-    const CityChange = (event) =>
-    {
-        setCity(event.target.value);
-    }
 
     // Kontrola kontrolniho kodu
     const CheckCodeChange = (event) =>
     {
         setCheckCode(event.target.value);
     }
+
 
     // InzertSubmit (poslani do api)
     const InzertSubmit = async (event) =>
@@ -137,8 +78,7 @@ const AddInzert = () =>
             let sent = window.confirm("Opravdu chcete poslat inzerát?");
             if(sent)
             {
-                await AddInzertToDatabase(text,post,section,firstName,lastName,telephoneNumber,email,
-                    street,city,zipCode);
+                await AddInzertToDatabase(inzertInfo);
                 document.getElementById('checkboxAgree').click();
             }
         }
@@ -182,7 +122,7 @@ const AddInzert = () =>
                                     label="Rubrika *"
                                     required
                                     style={{backgroundColor: "white", margin: "0px"}}
-                                    onChange={SectionChange}
+                                    onChange={(e)=>{setInzertInfo({...inzertInfo,["section"]:e.target.value})}}
                                     >
                                     <MenuItem value={0}>Prodám</MenuItem>
                                     <MenuItem value={1}>Koupím</MenuItem>
@@ -199,7 +139,7 @@ const AddInzert = () =>
                                     label="Zveřejnit *"
                                     required
                                     style={{backgroundColor: "white", margin: "0px"}}
-                                    onChange={PostChange}
+                                    onChange={(e)=>{setInzertInfo({...inzertInfo,["post"]:e.target.value})}}
                                     >
                                     <MenuItem value={0}>Inzert Vlašim a Unison Inzert Benešov</MenuItem>
                                     <MenuItem value={1}>Inzert Vlašim</MenuItem>
@@ -211,7 +151,13 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 1
-                                    <input hidden accept="image/*" type="file" onChange={Photo1Change}/>
+                                    <input hidden accept="image/*" type="file" onChange={(e)=>  {
+                                                                                                    var reader = new FileReader();
+                                                                                                    let file = e.target.files[0];
+                                                                                                    var array = reader.readAsArrayBuffer(file);
+                                                                                                    var blob = new Blob([array]);
+                                                                                                    setInzertInfo({...inzertInfo,["photo_1"]:blob})
+                                                                                                }}/>
                                 </Button>  
                             </Stack>
                         </List>
@@ -219,7 +165,7 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 2
-                                    <input hidden accept="image/*" type="file" onChange={Photo2Change}/>
+                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setInzertInfo({...inzertInfo,["photo_2"]:e.target.files[0]})}}/>
                                 </Button>   
                             </Stack>
                         </List>
@@ -238,7 +184,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={FirstNameChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["firstName"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -248,7 +194,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}} 
                                         required
-                                        onChange={LastNameChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["lastName"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -258,7 +204,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={TelephoneNumberChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["telephoneNumber"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -268,7 +214,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={EmailChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["email"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -278,7 +224,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={StreetChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["street"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -288,7 +234,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={CityChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["city"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -298,7 +244,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", width: "150px"}}
                                         required
-                                        onChange={ZipCodeChange}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["zipCode"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "30px"}}>
@@ -314,7 +260,7 @@ const AddInzert = () =>
                     </List>
                     <div className="addInzert-text-normal">
                         ** Před odesláním vyplňte tento kód: <b>{code}</b> (slouží k ochraně proti&nbsp;
-                         <a href="https://cs.wikipedia.org/wiki/Koment%C3%A1%C5%99ov%C3%BD_spam" target="_blank">
+                         <a href="https://cs.wikipedia.org/wiki/Koment%C3%A1%C5%99ov%C3%BD_spam" target="_blank" rel="noreferrer">
                           komentářovému spamu
                         </a>)
                     </div>
@@ -344,28 +290,16 @@ export default AddInzert;
 
 
 /// Posel dotaz do api o pridani inzeratu do databaze
-const AddInzertToDatabase = async (text,post,selection,firstName,lastName,
-    telephoneNumber,email,street,city,zipCode) =>
+const AddInzertToDatabase = async (inzertInfo) =>
 {
     try
     {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({  "selection": selection, 
-                                    "post": post, 
-                                    "text": text, 
-                                    "userId": 14,
-                                    "FirstName": firstName,
-                                    "LastName": lastName,
-                                    "TelefonNumber": telephoneNumber,
-                                    "Email": email,
-                                    "Street": street,
-                                    "City": city,
-                                    "ZipCode": parseInt(zipCode)
-                                })
+            body: inzertInfo
         };
-        console.log(requestOptions);
+        console.log(requestOptions.body);
     
         const response = await fetch('https://localhost:7020/api/inzert', requestOptions);
     
