@@ -9,6 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { Stream } from "@mui/icons-material";
 
 
 
@@ -43,8 +44,11 @@ const Sale = () =>
                 {inzerts.map(inzert =>  <Card   
                                             sx={{ maxWidth: 600 }} 
                                             style={{marginBottom: "50px"}}>
-                                            <CardMedia>
-                                            </CardMedia>
+                                            <CardMedia 
+                                                sx={{ height: 300}}
+                                                image = {`data:image/jpeg;base64,${inzert.photo_1}`}
+                                                title = "Obrazek"
+                                            />
                                             <CardContent>
                                                 <Typography gutterBottom variant="h5" component="div">
                                                     Prodam
@@ -70,7 +74,6 @@ const GetBuyInzertsFromDatabase =  async () =>
     {
         const response = await fetch("https://localhost:7020/api/inzert");
         const data = await response.json();
-        console.log(data);
         return data;
     }
     catch(Error)

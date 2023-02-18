@@ -21,6 +21,7 @@ import ListItem from '@mui/material/ListItem';
 
 // Icons
 import SendIcon from '@mui/icons-material/Send';
+import { Label } from "@mui/icons-material";
 
 
 
@@ -29,20 +30,22 @@ const AddInzert = () =>
 {
     const [text, setText] = useState("");
     const [lengthText, setLengthText] = useState(0);
-    const [textLabel, setTextLabel] = useState("Text inzerátu (500/0)");
+    const [textLabel, setTextLabel] = useState("Text inzerátu (0/500)");
     const [code,setCode] = useState(Math.floor(Math.random()*(1000-100)+100));
     const [checkCode, setCheckCode] = useState();
+    const [file_1,setFile_1] = useState ();
+    const [file_2,setFile_2] = useState ();
     const [inzertInfo,setInzertInfo] = useState(
         {
             text: "",
-            section: null,
+            selection: null,
             post: null,
+            userId: null,
             photo_1: null,
             photo_2: null,
-            userId: null,
             firstName: "",
             lastName: "",
-            telephoneNumber: "",
+            telefonNumber: "",
             email: "",
             street: "",
             city: "",
@@ -57,7 +60,7 @@ const AddInzert = () =>
     {
         setText(event.target.value);
         setLengthText(event.target.value.length);
-        setTextLabel(`Text inzerátu (500/${event.target.value.length})`);
+        setTextLabel(`Text inzerátu (${event.target.value.length}/500)`);
         setInzertInfo({...inzertInfo,["text"]:event.target.value});
     }
 
@@ -78,7 +81,19 @@ const AddInzert = () =>
             let sent = window.confirm("Opravdu chcete poslat inzerát?");
             if(sent)
             {
-                await AddInzertToDatabase(inzertInfo);
+                // Poslani zakladnich dat o inzeratu
+                const inzertId = await AddInzertToDatabase(inzertInfo);
+
+                // Poslani fotografii
+                if(file_1 != null)
+                {
+                    await AddImageToInzert(inzertId,1,file_1);
+                }
+
+                if(file_2 != null)
+                {
+                    await AddImageToInzert(inzertId,2,file_2);
+                }
                 document.getElementById('checkboxAgree').click();
             }
         }
@@ -122,7 +137,7 @@ const AddInzert = () =>
                                     label="Rubrika *"
                                     required
                                     style={{backgroundColor: "white", margin: "0px"}}
-                                    onChange={(e)=>{setInzertInfo({...inzertInfo,["section"]:e.target.value})}}
+                                    onChange={(e)=>{setInzertInfo({...inzertInfo,["selection"]:e.target.value})}}
                                     >
                                     <MenuItem value={0}>Prodám</MenuItem>
                                     <MenuItem value={1}>Koupím</MenuItem>
@@ -151,22 +166,18 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 1
-                                    <input hidden accept="image/*" type="file" onChange={(e)=>  {
-                                                                                                    var reader = new FileReader();
-                                                                                                    let file = e.target.files[0];
-                                                                                                    var array = reader.readAsArrayBuffer(file);
-                                                                                                    var blob = new Blob([array]);
-                                                                                                    setInzertInfo({...inzertInfo,["photo_1"]:blob})
-                                                                                                }}/>
-                                </Button>  
+                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setFile_1(e.target.files[0])}}/>
+                                </Button>
+                                <p style={{fontSize: "0.7em", fontStyle: "italic"}}>{ file_1 != null ? file_1.name : "" }</p>
                             </Stack>
                         </List>
                         <List style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 2
-                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setInzertInfo({...inzertInfo,["photo_2"]:e.target.files[0]})}}/>
-                                </Button>   
+                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setFile_2(e.target.files[0])}}/>
+                                </Button>
+                                <p style={{fontSize: "0.7em", fontStyle: "italic"}}>{ file_2 != null ? file_2.name : "" }</p>
                             </Stack>
                         </List>
                     </List>
@@ -204,7 +215,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", minWidth: "325px"}}
                                         required
-                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["telephoneNumber"]:e.target.value})}}
+                                        onChange={(e)=>{setInzertInfo({...inzertInfo,["telefonNumber"]:e.target.value})}}
                             />
                         </ListItem>
                         <ListItem style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
@@ -279,6 +290,7 @@ const AddInzert = () =>
                             Poslat inzerát
                         </Button>
                     </div>
+                    
                 </div>
             </form>
         </>
@@ -297,7 +309,7 @@ const AddInzertToDatabase = async (inzertInfo) =>
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: inzertInfo
+            body: JSON.stringify(inzertInfo)
         };
         console.log(requestOptions.body);
     
@@ -307,13 +319,10 @@ const AddInzertToDatabase = async (inzertInfo) =>
         {
             throw new Error("Network response was not ok");
         }
-        else
-        {
-            alert("Inzerat uspesne pridan do databaze.");
-        }
     
         const data = await response.json();
-        console.log(data);
+        console.log(data.id);
+        return data.id;
     }
     catch(Error)
     {
@@ -321,4 +330,34 @@ const AddInzertToDatabase = async (inzertInfo) =>
         alert(`There was a problem with the fetch operation:', Error message: ${Error}`);
     }
     
+}
+
+
+
+/// Posel dotaz do api o pridani souboru
+const AddImageToInzert = async (inzertId,fileNumber,file) =>
+{
+    var data = new FormData();
+    data.append('file',file);
+    console.log(file);
+
+    try
+    {
+        const requestOptions = {
+            method: 'POST',
+            body: data
+        };
+    
+        const response = await fetch(`https://localhost:7020/api/inzert/${inzertId}/addFile/${fileNumber}`, requestOptions);
+    
+        if(!response.ok)
+        {
+            throw new Error("Network response was not ok");
+        }
+    }
+    catch(Error)
+    {
+        console.log(`There was a problem with the fetch operation:', Error message: ${Error}`);
+        alert(`There was a problem with the fetch operation:', Error message: ${Error}`);
+    }
 }
