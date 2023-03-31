@@ -21,7 +21,7 @@ import ListItem from '@mui/material/ListItem';
 
 // Icons
 import SendIcon from '@mui/icons-material/Send';
-import { Label } from "@mui/icons-material";
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 
@@ -35,6 +35,8 @@ const AddInzert = () =>
     const [checkCode, setCheckCode] = useState();
     const [file_1,setFile_1] = useState ();
     const [file_2,setFile_2] = useState ();
+    const [removeFileDiv_1,setRemoveFileDiv_1] = useState ("addInzert-inzert-info-removeFileDiv-hidden");
+    const [removeFileDiv_2,setRemoveFileDiv_2] = useState ("addInzert-inzert-info-removeFileDiv-hidden");
     const [inzertInfo,setInzertInfo] = useState(
         {
             text: "",
@@ -65,10 +67,39 @@ const AddInzert = () =>
     }
 
 
-    // Kontrola kontrolniho kodu
-    const CheckCodeChange = (event) =>
+    // Nastavuje file
+    const SetFile = (event, imageNUmber) =>
     {
-        setCheckCode(event.target.value);
+        if(imageNUmber === 1)
+        {
+            setFile_1(event.target.files[0]);
+            setRemoveFileDiv_1("addInzert-inzert-info-removeFileDiv");
+        }
+        else if(imageNUmber === 2)
+        {
+            setFile_2(event.target.files[0]);
+            setRemoveFileDiv_2("addInzert-inzert-info-removeFileDiv");
+        }
+    }
+
+
+    // Odstanuje file (image) 
+    const ClierFile = (imageNumber) =>
+    {
+        if(imageNumber === 1)
+        {
+            let inputElement = document.getElementById("inputFile_1");
+            inputElement.files = new DataTransfer().files;
+            setFile_1(null);
+            setRemoveFileDiv_1("addInzert-inzert-info-removeFileDiv-hidden");
+        }
+        else if(imageNumber === 2)
+        {
+            let inputElement = document.getElementById("inputFile_2");
+            inputElement.files = new DataTransfer().files;
+            setFile_2(null);
+            setRemoveFileDiv_2("addInzert-inzert-info-removeFileDiv-hidden");
+        }
     }
 
 
@@ -78,7 +109,7 @@ const AddInzert = () =>
         event.preventDefault();
         if(checkCode == code)
         {
-            let sent = window.confirm("Opravdu chcete poslat inzerát?");
+            let sent = window.confirm("Opravdu si prejete poslat inzerát?");
             if(sent)
             {
                 // Poslani zakladnich dat o inzeratu
@@ -102,6 +133,8 @@ const AddInzert = () =>
             alert("Kontrolni bod se neschoduje Vami zadanym kodem!");
         }
     }
+
+    console.log(file_1)
 
     return(
         <>
@@ -166,18 +199,24 @@ const AddInzert = () =>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 1
-                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setFile_1(e.target.files[0])}}/>
+                                    <input id="inputFile_1" hidden accept="image/*" type="file" onChange={(e)=>{SetFile(e,1)}}/>
                                 </Button>
-                                <p style={{fontSize: "0.7em", fontStyle: "italic"}}>{ file_1 != null ? file_1.name : "" }</p>
+                                <div className={removeFileDiv_1}>
+                                    <ClearIcon fontSize="medium" className="addInzert-inzert-info-removeFileDiv-icon" onClick={() => ClierFile(1)}></ClearIcon>
+                                    <p style={{fontSize: "1em", fontStyle: "italic"}}>{ file_1 != null ? file_1.name : "" }</p>
+                                </div>
                             </Stack>
                         </List>
                         <List style={{margin: "0px", padding: "0px",  marginBottom: "20px"}}>
                             <Stack direction="row" alignItems="center" spacing={2}>
                                 <Button variant="contained" component="label" size="small">
                                     Fotografie 2
-                                    <input hidden accept="image/*" type="file" onChange={(e)=>{setFile_2(e.target.files[0])}}/>
+                                    <input id="inputFile_2" hidden accept="image/*" type="file" onChange={(e)=>{SetFile(e,2)}}/>
                                 </Button>
-                                <p style={{fontSize: "0.7em", fontStyle: "italic"}}>{ file_2 != null ? file_2.name : "" }</p>
+                                <div className={removeFileDiv_2}>
+                                    <ClearIcon fontSize="medium" className="addInzert-inzert-info-removeFileDiv-icon" onClick={() => ClierFile(2)}></ClearIcon>
+                                    <p style={{fontSize: "1em", fontStyle: "italic"}}>{ file_2 != null ? file_2.name : "" }</p>
+                                </div>   
                             </Stack>
                         </List>
                     </List>
@@ -265,7 +304,7 @@ const AddInzert = () =>
                                         variant="outlined" 
                                         style={{backgroundColor: "white", width: "150px"}}
                                         required
-                                        onChange={CheckCodeChange}
+                                        onChange={(e)=>{setCheckCode(e.target.value)}}
                             />
                         </ListItem>
                     </List>
@@ -328,6 +367,7 @@ const AddInzertToDatabase = async (inzertInfo) =>
     {
         console.log(`There was a problem with the fetch operation:', Error message: ${Error}`);
         alert(`There was a problem with the fetch operation:', Error message: ${Error}`);
+        return false;
     }
     
 }
@@ -354,10 +394,12 @@ const AddImageToInzert = async (inzertId,fileNumber,file) =>
         {
             throw new Error("Network response was not ok");
         }
+        return true;
     }
     catch(Error)
     {
         console.log(`There was a problem with the fetch operation:', Error message: ${Error}`);
         alert(`There was a problem with the fetch operation:', Error message: ${Error}`);
+        return false;
     }
 }

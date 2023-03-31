@@ -46,9 +46,31 @@ div.addInzert-text-normal
 {
     margin: 10px;
 
-    .addInzert-inzert-info-image-div
+    .addInzert-inzert-info-removeFileDiv
     {
         display: flex;
+        margin-left: 10px;
+
+        .addInzert-inzert-info-removeFileDiv-icon
+        {
+            cursor: pointer;
+        }
+
+        .addInzert-inzert-info-removeFileDiv-icon:hover
+        {
+            color: blue;
+        }
+
+        p
+        {
+            margin: 0px;
+            margin-left: 15px;
+        }
+    }
+
+    .addInzert-inzert-info-removeFileDiv-hidden
+    {
+        display: none;
     }
 }
 

@@ -33,7 +33,7 @@ const Sale = () =>
         GetBuyInzerts();
     }
     
-
+    console.log(inzerts);
     return(
         <>
             <h3 className="contact-normal">
@@ -46,7 +46,7 @@ const Sale = () =>
                                             style={{marginBottom: "50px"}}>
                                             <CardMedia 
                                                 sx={{ height: 300}}
-                                                image = {`data:image/jpeg;base64,${inzert.photo_1}`}
+                                                image = {`data:image/jpeg;base64,${ inzert.imageArray_1}`}
                                                 title = "Obrazek"
                                             />
                                             <CardContent>
@@ -72,8 +72,9 @@ const GetBuyInzertsFromDatabase =  async () =>
 {
     try
     {
-        const response = await fetch("https://localhost:7020/api/inzert");
+        const response = await fetch("https://localhost:7020/api/inzert/selection/0");
         const data = await response.json();
+        console.log(data);
         return data;
     }
     catch(Error)
