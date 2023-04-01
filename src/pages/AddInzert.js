@@ -54,7 +54,7 @@ const AddInzert = () =>
             zipCode: ""
         }
     );
-    useEffect(()=>{console.log(inzertInfo)},[inzertInfo]);
+    //useEffect(()=>{console.log(inzertInfo)},[inzertInfo]);
 
 
     // Nastaveni textu a label textu
@@ -67,7 +67,7 @@ const AddInzert = () =>
     }
 
 
-    // Nastavuje file
+    // Nastavuje file (image)
     const SetFile = (event, imageNUmber) =>
     {
         if(imageNUmber === 1)
@@ -114,18 +114,30 @@ const AddInzert = () =>
             {
                 // Poslani zakladnich dat o inzeratu
                 const inzertId = await AddInzertToDatabase(inzertInfo);
+                
+                let succesFile_1 = true;
+                let succesFile_2 = true;
 
-                // Poslani fotografii
-                if(file_1 != null)
+                if(inzertId != false)
                 {
-                    await AddImageToInzert(inzertId,1,file_1);
+                    // Poslani fotografii
+                    if(file_1 != null)
+                    {
+                        succesFile_1 = await AddImageToInzert(inzertId,1,file_1);
+                    }
+
+                    if(file_2 != null)
+                    {
+                        succesFile_2 = await AddImageToInzert(inzertId,2,file_2);
+                    }
                 }
 
-                if(file_2 != null)
-                {
-                    await AddImageToInzert(inzertId,2,file_2);
-                }
                 document.getElementById('checkboxAgree').click();
+
+                if(inzertId != false && succesFile_1 != null && succesFile_2 != null)
+                {
+                    alert("Inzerat byl uspesne pridan.");
+                }
             }
         }
         else
@@ -133,8 +145,6 @@ const AddInzert = () =>
             alert("Kontrolni bod se neschoduje Vami zadanym kodem!");
         }
     }
-
-    console.log(file_1)
 
     return(
         <>
