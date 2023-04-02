@@ -1,0 +1,96 @@
+
+
+// Text
+.inzerts
+{
+    h3
+    {
+        margin:10px;
+        display: block;
+    }
+
+    .inzerts-container
+    {
+        display: flex;
+        flex-wrap: wrap;
+
+        .inzerts-container-inzert
+        {
+            margin: 10px;
+            padding: 10px;
+            width: 700px;
+            height:min-content;
+            background-color: bisque;
+            //border-width: 1px;
+            //border-style: solid;
+            border-radius: 10px;
+
+            ul.inzerts-container-inzert-images
+            {
+                display: flex;
+                list-style-type: none;
+                margin: 0px;
+                padding: 0px;
+
+                li
+                {
+                    display: block;
+
+                    img
+                    {
+                        border-radius: 8px;
+                        margin: 5px;
+                        cursor: zoom-in;
+                    }
+
+                    img:hover
+                    {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .inzerts-modal
+    {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+
+        .inzerts-modal-content
+        {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1000px;
+            cursor: zoom-out;
+        }
+
+        .inzerts-modal-close
+        {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .inzerts-modal-close:hover, .inzerts-modal-close:focus
+        {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+}
