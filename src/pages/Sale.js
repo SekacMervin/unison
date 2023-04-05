@@ -11,9 +11,9 @@ const Sale = () =>
     const [inzerts, setInzerts] = useState([]);
     const [sentRequest, setSentRequest] = useState(true);
 
-    const GetBuyInzerts = async () =>
+    const GetSaleInzerts = async () =>
     {
-        const inzertData = await GetBuyInzertsFromDatabase();
+        const inzertData = await GetSaleInzertsFromDatabase();
         setSentRequest(false);
         setInzerts(inzertData);
     }
@@ -22,7 +22,7 @@ const Sale = () =>
     /// Posle dotaz do Api o inzerty typu prodam
     if(sentRequest)
     {
-        GetBuyInzerts();
+        GetSaleInzerts();
     }
 
 
@@ -97,7 +97,7 @@ export default Sale;
 
 
 /// 
-const GetBuyInzertsFromDatabase =  async () =>
+const GetSaleInzertsFromDatabase =  async () =>
 {
     try
     {

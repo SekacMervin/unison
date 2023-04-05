@@ -1,15 +1,8 @@
 
 //// Import packages
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import styles from "../Styles/Styles.scss";
-
-import Card from '@mui/material/Card';
-import CardMedia from "@mui/material/CardMedia";
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-
 
 
 //// Function
@@ -18,34 +11,105 @@ const Buy = () =>
     const [inzerts, setInzerts] = useState([]);
     const [sentRequest, setSentRequest] = useState(true);
 
+    const GetBuyInzerts = async () =>
+    {
+        const inzertData = await GetBuyInzertsFromDatabase();
+        setSentRequest(false);
+        setInzerts(inzertData);
+    }
+
+
+    /// Posle dotaz do Api o inzerty typu prodam
+    if(sentRequest)
+    {
+        GetBuyInzerts();
+    }
+
+
+    //// Fotka na full-screen
+    const FullScreenImage = (image) =>
+    {
+        let imgModal = document.getElementById("imgModel");
+        let img = document.getElementById("img");
+        img.src = image;
+        imgModal.style.display = "block";
+    }
+
+
+    const FullScreenImageClose = () =>
+    {
+        let imgModal = document.getElementById("imgModel");
+        let img = document.getElementById("img");
+        img.src = null;
+        imgModal.style.display = "none";
+    }
+    
 
     return(
-        <>
-            <h3 className="contact-normal">
+        <div className="inzerts">
+            <h3>
                 Koupe
             </h3>
             <hr></hr>
-            <div>
-                {inzerts.map(inzert =>  <Card   
-                                            sx={{ maxWidth: 600 }} 
-                                            style={{marginBottom: "50px"}}>
-                                            <CardMedia 
-                                                sx={{ height: 300}}
-                                                image = {`data:image/jpeg;base64,${ inzert.imageArray_1}`}
-                                                title = "Obrazek"
-                                            />
-                                            <CardContent>
-                                                <Typography gutterBottom variant="h5" component="div">
-                                                    Prodam
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {inzert.text}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>)}
+            <div className="inzerts-container">
+                {inzerts.map(
+                    inzert =>
+                    <div className="inzerts-container-inzert">
+                        <p>
+                            {inzert.text}<br/>
+                            {inzert.telefonNumber}
+                        </p>
+                        <ul className="inzerts-container-inzert-images">
+                            <li>
+                                <img
+                                    src={`data:image/jpeg;base64,${ inzert.imageArray_1}`}
+                                    title="photo_1"
+                                    width={300}
+                                    height={300}
+                                    onClick={() => FullScreenImage(`data:image/jpeg;base64,${ inzert.imageArray_1}`)}
+                                >
+                                </img>
+                            </li>
+                            <li>
+                                <img
+                                    src={`data:image/jpeg;base64,${ inzert.imageArray_2}`}
+                                    title="photo_2"
+                                    width={300}
+                                    height={300}
+                                    onClick={() => FullScreenImage(`data:image/jpeg;base64,${ inzert.imageArray_2}`)}
+                                >
+                                </img>
+                            </li>
+                        </ul>
+                    </div>
+                )}
             </div>
-        </>
+            <div className="inzerts-modal" id="imgModel">
+                <span onClick={() => FullScreenImageClose()} className="inzerts-modal-close">&times;</span>
+                <img onClick={() => FullScreenImageClose()}  className="inzerts-modal-content" id="img"></img>
+            </div>
+        </div>
     );
 };
 
 export default Buy;
+
+
+
+/// 
+const GetBuyInzertsFromDatabase =  async () =>
+{
+    try
+    {
+        const response = await fetch("https://localhost:7020/api/inzert/selection/1");
+        const data = await response.json();
+        console.log(data);
+        return data;
+    }
+    catch(Error)
+    {
+        console.error('There was a problem with the fetch operation:', Error);
+        alert(`There was a problem with the fetch operation:', Error message: ${Error}`);
+        return [];
+    }
+}
