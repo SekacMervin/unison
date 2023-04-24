@@ -7,8 +7,9 @@ import styles from "../Styles/Styles.scss";
 
 // Icons
 import { Facebook,Instagram,Cash,Cart3,PersonRolodex,
-          Search, ClipboardPlus} from 'react-bootstrap-icons'
-import { minHeight } from "@mui/system";
+          Search, ClipboardPlus} from 'react-bootstrap-icons';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Button from '@mui/material/Button';
 
 
 
@@ -16,9 +17,6 @@ import { minHeight } from "@mui/system";
 //// Return Layout
 const Layout = () => {
     
-    // Get screen height
-    const screenHeight = window.screen.height;
-
     // Ziskani aktivni stranky
     const location = useLocation();
 
@@ -63,19 +61,19 @@ const Layout = () => {
     return (
       <div>
         <div className="header">
-          <div className="header-leftSite">
+          <div className="header-left">
             <h2>UNISON</h2>
           </div>
-          <div className="header-rightSite">
-            <ul className="header-rightSite-ul">
-              <li className="header-rightSite-li">
-                <a className="header-rightSite-iconLink" href="https://www.facebook.com" target="_blank" rel="noreferrer" title="Facebook">
-                  <Facebook className="header-rightSite-iconFacebook" />
+          <div className="header-right">
+            <ul className="header-right-ul">
+              <li className="header-right-li">
+                <a className="header-right-iconLink" href="https://www.facebook.com" target="_blank" rel="noreferrer" title="Facebook">
+                  <Facebook className="header-right-iconFacebook" />
                 </a>
               </li>
-              <li className="header-rightSite-li">
-                <a className="header-rightSite-iconLink" href="https://www.instagram.com" target="_blank" rel="noreferrer" title="Instagram">
-                  <Instagram className="header-rightSite-iconInstagram" />
+              <li className="header-right-li">
+                <a className="header-right-iconLink" href="https://www.instagram.com" target="_blank" rel="noreferrer" title="Instagram">
+                  <Instagram className="header-right-iconInstagram" />
                 </a>
               </li>
             </ul>
@@ -83,18 +81,27 @@ const Layout = () => {
         </div>
         <div className="navigationbar">
           <div className={navigationEmpty}></div>
-          <div className="navigationbar-center">
-            <ul className="navigationbar-center-ul">
-              <li className="navigationbar-center-li">
-                <Link className={location.pathname === "/" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link-left"} to="/">Home</Link>
-              </li>
-              <li className="navigationbar-center-li">
-                <Link className={location.pathname === "/price" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link"} to="/price">Ceník</Link>
-              </li>
-              <li className="navigationbar-center-li">
-                <Link className={location.pathname === "/contact" ? "navigationbar-center-li-link-active" : "navigationbar-center-li-link"} to="/contact">Kontakt</Link>
-              </li>
-            </ul>
+          <div className="navigationbar-container">
+            <div className="navigationbar-container-left">
+              <ul className="navigationbar-container-left-ul">
+                <li className="navigationbar-container-left-li">
+                  <Link className={location.pathname === "/" ? "navigationbar-container-left-li-link-active" : "navigationbar-container-left-li-link-left"} to="/">Home</Link>
+                </li>
+                <li className="navigationbar-container-left-li">
+                  <Link className={location.pathname === "/price" ? "navigationbar-container-left-li-link-active" : "navigationbar-container-left-li-link"} to="/price">Ceník</Link>
+                </li>
+                <li className="navigationbar-container-left-li">
+                  <Link className={location.pathname === "/contact" ? "navigationbar-container-left-li-link-active" : "navigationbar-container-left-li-link"} to="/contact">Kontakt</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="navigationbar-container-right">
+              <div className="navigationbar-container-right-loggin">
+                <Button variant="outlined" size="large" endIcon={<AccountCircleIcon />}>
+                  Prihlasit
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
         <div className={mobileNavigationbar}>

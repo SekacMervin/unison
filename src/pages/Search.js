@@ -137,8 +137,8 @@ const Search = () =>
                                     <img
                                         src={`data:image/jpeg;base64,${ inzert.imageArray_1}`}
                                         title="photo_1"
-                                        width={300}
-                                        height={300}
+                                        width={150}
+                                        height={150}
                                         onClick={() => FullScreenImage(`data:image/jpeg;base64,${ inzert.imageArray_1}`)}
                                     >
                                     </img>
@@ -147,8 +147,8 @@ const Search = () =>
                                     <img
                                         src={`data:image/jpeg;base64,${ inzert.imageArray_2}`}
                                         title="photo_2"
-                                        width={300}
-                                        height={300}
+                                        width={150}
+                                        height={150}
                                         onClick={() => FullScreenImage(`data:image/jpeg;base64,${ inzert.imageArray_2}`)}
                                     >
                                     </img>
