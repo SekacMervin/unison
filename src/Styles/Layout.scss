@@ -103,18 +103,11 @@ $min-width: 600px;
     min-width: $min-width;
     width: 100%;
 
-    .navigationbar-left-empty
+    .navigationbar-left
     {
         transition: 0.3s;
         width: 257px;
         min-width: 257px;
-    }
-
-    .navigationbar-left-empty-sidebar-short
-    {
-        transition: 0.3s;
-        width: 77px;
-        min-width: 77px;
     }
 
     .navigationbar-container
@@ -207,8 +200,8 @@ $min-width: 600px;
 
             .navigationbar-container-right-loggin
             {
-                padding-left: 20px;
-                padding-right: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
                 padding-top: 12px;
                 padding-bottom: 10px;
             }
@@ -227,21 +220,21 @@ $min-width: 600px;
     margin-bottom: 5px;
     min-width: $min-width;
     
-    .mobile-navigationbar-flex-end
+    .mobile-navigationbar-head
     {
         display: flex;
         justify-content: flex-end;
         height: 50px;
-    }
 
-    .mobile-navigationbar-menuIcon
-    {
-        display: inline-block;
-        cursor: pointer;
-        margin-right: 15px;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 4px;
+        .mobile-navigationbar-head-button
+        {
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 20px;
+            padding-left: 5px;
+            padding-right: 15px;
+            padding-top: 4px;
+        }
     }
 
     .mobile-bar1, .mobile-bar2, .mobile-bar3
@@ -621,7 +614,7 @@ $min-width: 600px;
     {
         margin-bottom: 2px;
 
-        .navigationbar-left-empty
+        .navigationbar-left
         {
             display: none;
         }
@@ -640,19 +633,8 @@ $min-width: 600px;
             {
                 margin-right: 20px;
                 margin-left: 0px;
-
-                // .navigationbar-container-right-loggin
-                // {
-                //     margin-right: 0px;
-                // }
             }
         }
-    }
-
-    // Leva strana v navigationbar pri slidebar == short
-    .navigationbar-left-empty-sidebar-short
-    {
-        display: none;
     }
 
     // Mobile navigationbar

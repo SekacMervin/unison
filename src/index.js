@@ -2,6 +2,7 @@
 //// import packages
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -19,11 +20,20 @@ import Search from "./pages/Search";
 import NoPage from "./pages/NoPage";
 
 
+
+const GetToket = () =>
+{
+  alert("Ahoj");
+  return "Dan";
+}
+
+// window.onpaint = GetToket();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout user={GetToket()} />}>
           <Route index element={<Home />} />
           <Route path='contact' element={<Contact />} />
           <Route path='price' element={<Price />} />
